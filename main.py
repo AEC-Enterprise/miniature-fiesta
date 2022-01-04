@@ -4,6 +4,8 @@ from oauth2client.service_account import ServiceAccountCredentials
 from selenium.webdriver.chrome.service import Service
 import pprint
 from bs4 import BeautifulSoup
+import platform
+from os import getcwd
 
 # --------------------------------------------------------------------------------------
 # Chrome settings:
@@ -13,7 +15,12 @@ chrome_options.add_argument('--disable-dev-shm-usage')
 chrome_options.add_argument("--headless")
 chrome_options.add_argument('--disable-notification')
 chrome_options.add_argument('--disable-infobars')
-browser = webdriver.Chrome('./chromedriver', options=chrome_options)
+
+if (platform.system() == 'Windows'):
+    browser = webdriver.Chrome(getcwd() + '\chromedriver', options=chrome_options)
+if (platform.system() == 'Darwin' or platform.system() == 'Linux' ):
+    browser = webdriver.Chrome(getcwd() + '/chromedriver', options=chrome_options)
+
 # --------------------------------------------------------------------------------------
 # SHEET SETUP
 scope = ["https://spreadsheets.google.com/feeds",
