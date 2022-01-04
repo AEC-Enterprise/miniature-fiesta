@@ -1,5 +1,5 @@
-from driver_Setup import browser
-from sheet_setup import sheet
+from setup.driver_Setup import browser
+from setup.sheet_setup import sheet
 
 
 def click_xpath(xpath):
