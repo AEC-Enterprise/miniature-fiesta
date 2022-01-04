@@ -1,4 +1,6 @@
 from selenium import webdriver
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 from selenium.webdriver.chrome.service import Service
 import pprint
 from bs4 import BeautifulSoup
