@@ -3,7 +3,7 @@ from selenium.webdriver.chrome.service import Service
 import pprint
 from bs4 import BeautifulSoup
 
-# -----------------------------------------------------------------
+# --------------------------------------------------------------------------------------
 # Chrome settings:
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('--no-sandbox')
@@ -12,9 +12,18 @@ chrome_options.add_argument("--headless")
 chrome_options.add_argument('--disable-notification')
 chrome_options.add_argument('--disable-infobars')
 browser = webdriver.Chrome('./chromedriver', options=chrome_options)
-# ------------------------------------------------------------------
-
-
+# --------------------------------------------------------------------------------------
+# SHEET SETUP
+scope = ["https://spreadsheets.google.com/feeds",
+         "https://www.googleapis.com/auth/spreadsheets",
+         "https://www.googleapis.com/auth/drive.file",
+         "https://www.googleapis.com/auth/drive"]
+credentials = ServiceAccountCredentials.from_json_keyfile_name('static/key/api.json', scope)
+client = gspread.authorize(credentials)
+sheet = client.open_by_key("1jGMF0OBt8x20C8eLX9u6Qx8sADyy870kLyxE0HO_U2g").sheet1
+# --------------------------------------------------------------------------------------
+    
+    
 def click_xpath(xpath):
     browser.find_element_by_xpath(xpath).click()
 
