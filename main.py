@@ -21,7 +21,9 @@ async def root(city: str):
     elif city == 'Kakinada' or city == 'kakinada':
         sheet = spreadsheet.get_worksheet(1)
     else:
-        sheet = spreadsheet.add_worksheet(title=f"{city}")
+        sheet = spreadsheet.add_worksheet(title=f"{city}", rows="100", cols="20")
+        sheet.update_cell(1, 1, "Company")
+        sheet.update_cell(1, 2, "Website")
 
     search = f"Software Companies in {city}"
     # finding city...
