@@ -6,11 +6,20 @@ from bs4 import BeautifulSoup
 import pprint
 from fastapi.responses import HTMLResponse
 from selenium.common.exceptions import NoSuchElementException
-
+from fastapi.middleware.cors import CORSMiddleware
 from setup.sheet_setup import spreadsheet
 
 app = FastAPI()
 
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/search/{city}")
 async def root(city: str):
